@@ -16,9 +16,7 @@ class GameTest extends TestCase
         $this->assertInstanceOf(Game::class, $game);
     }
 
-    /**
-     * @test
-     */
+
     public function rollMany(int $n, int $pins): void
     {
         $game = new Game();
