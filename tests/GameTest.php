@@ -10,14 +10,14 @@ class GameTest extends TestCase
     /**
      * @test
      */
-    public function testGameCanBeInstantiated(): void
+    public function it_should_instantiate_a_game(): void
     {
         $game = new Game();
         $this->assertInstanceOf(Game::class, $game);
     }
 
 
-    public function rollMany(int $n, int $pins): void
+    public function it_should_increment_max_number_of_rolls(int $n, int $pins): void
     {
         $game = new Game();
 
@@ -29,19 +29,19 @@ class GameTest extends TestCase
     /**
      * @test
      */
-    public function testGutterGame(): void
+    public function it_should_test_for_a_gutter_game(): void
     {
         $game = new Game();
         $limit = 20;
         $pins = 0;
-        $this->rollMany($limit, $pins);
+        $this->it_should_increment_max_number_of_rolls($limit, $pins);
         $this->assertEquals(0, $game->score());
     }
 
     /**
      * @test
      */
-    public function testAllOnes(): void
+    public function it_should_test_for_rolls_with_all_ones(): void
     {
         $game = new Game();
         for ($i = 0; $i < 20; ++$i) {
