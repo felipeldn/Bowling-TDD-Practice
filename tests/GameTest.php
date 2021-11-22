@@ -29,7 +29,7 @@ class GameTest extends TestCase
     /**
      * @test
      */
-    public function it_should_test_for_all_gutter_games(): void
+    public function it_should_test_for_gutter_games(): void
     {
         $game = new Game();
         $this->it_should_increment_max_number_of_rolls(20, 0);
