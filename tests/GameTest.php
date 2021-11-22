@@ -2,10 +2,10 @@
 
 namespace Bowling;
 
-//use GameTest;
+use GameTest;
 use PHPUnit\Framework\TestCase;
 
-class GameTest extends TestCase
+class Test extends TestCase
 {
     /**
      * @test
@@ -64,4 +64,42 @@ class GameTest extends TestCase
         $this->assertEquals(16, $game->score());
     }
 
+    /**
+     * @test
+     */
+    public function it_should_test_for_a_strike(): void
+    {
+        $game = new Game();
+
+        $game->roll(10); // strike
+        $game->roll(3);
+        $game->roll(4);
+
+        $this->it_should_increment_max_number_of_rolls(16, 0);
+        $this->assertEquals(24, $game->score());
+
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_test_for_a_perfect_game(): void
+    {
+        $game = new Game;
+
+//        $this->it_should_increment_max_number_of_rolls(12, 10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $game->roll(10);
+        $this->assertEquals(300, $game->score());
+    }
 }
