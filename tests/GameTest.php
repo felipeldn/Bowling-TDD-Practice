@@ -19,12 +19,24 @@ class GameTest extends TestCase
     /**
      * @test
      */
+    public function rollMany(int $n, int $pins): void
+    {
+        $game = new Game();
+
+        for ($i = 0; $i < $n; $i++) {
+            $game->roll($pins);
+        }
+    }
+
+    /**
+     * @test
+     */
     public function testGutterGame(): void
     {
         $game = new Game();
-        for ($i = 0; $i < 20; ++$i) {
-            $game->roll(0);
-        }
+        $limit = 20;
+        $pins = 0;
+        $this->rollMany($limit, $pins);
         $this->assertEquals(0, $game->score());
     }
 
@@ -39,4 +51,9 @@ class GameTest extends TestCase
         }
         $this->assertEquals(20, $game->score());
     }
+
+    /**
+     * @test
+     */
+
 }
