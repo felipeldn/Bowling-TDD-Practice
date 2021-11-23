@@ -7,6 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class Test extends TestCase
 {
+    protected function setUp(): Game
+    {
+        $game = new Game();
+
+        return $game;
+    }
+
     /**
      * @test
      */
@@ -17,13 +24,15 @@ class Test extends TestCase
     }
 
 
-    public function it_should_increment_max_number_of_rolls(int $n, int $pins): void
+    public function it_should_increment_max_number_of_rolls(int $n, int $pins): Game
     {
         $game = new Game();
 
         for ($i = 0; $i < $n; $i++) {
             $game->roll($pins);
         }
+
+        return $game;
     }
 
     /**
@@ -41,11 +50,7 @@ class Test extends TestCase
      */
     public function it_should_test_for_rolls_with_all_ones(): void
     {
-        $game = new Game();
-        for ($i = 0; $i < 20; ++$i) {
-            $game->roll(1);
-        }
-//        $this->it_should_increment_max_number_of_rolls(20, 1);
+        $game = $this->it_should_increment_max_number_of_rolls(20, 1);
         $this->assertEquals(20, $game->score());
     }
 
@@ -67,7 +72,7 @@ class Test extends TestCase
     /**
      * @test
      */
-    public function it_should_test_for_a_strike(): void
+    public function it_should_test_for_a_single_strike(): void
     {
         $game = new Game();
 
@@ -85,21 +90,7 @@ class Test extends TestCase
      */
     public function it_should_test_for_a_perfect_game(): void
     {
-        $game = new Game;
-
-//        $this->it_should_increment_max_number_of_rolls(12, 10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
-        $game->roll(10);
+        $game = $this->it_should_increment_max_number_of_rolls(12, 10);
         $this->assertEquals(300, $game->score());
     }
 }
