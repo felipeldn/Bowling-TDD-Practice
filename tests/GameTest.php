@@ -7,11 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class Test extends TestCase
 {
+    private $game;
+
     protected function setUp(): Game
     {
-        $game = new Game();
+        $this->game = new Game();
 
-        return $game;
+        return $this->game;
     }
 
     /**
@@ -26,13 +28,13 @@ class Test extends TestCase
 
     public function it_should_increment_max_number_of_rolls(int $n, int $pins): Game
     {
-        $game = new Game();
+//        $game = new Game();
 
         for ($i = 0; $i < $n; $i++) {
-            $game->roll($pins);
+            $this->game->roll($pins);
         }
 
-        return $game;
+        return $this->game;
     }
 
     /**
@@ -40,8 +42,8 @@ class Test extends TestCase
      */
     public function it_should_test_for_gutter_games(): void
     {
-        $game = new Game();
-        $this->it_should_increment_max_number_of_rolls(20, 0);
+//        $game = new Game();
+        $game = $this->it_should_increment_max_number_of_rolls(20, 0);
         $this->assertEquals(0, $game->score());
     }
 
@@ -59,13 +61,13 @@ class Test extends TestCase
      */
     public function it_should_test_for_a_spare(): void
     {
-        $game = new Game();
+//        $game = new Game();
 
-        $game->roll(5);
-        $game->roll(5); // spare
-        $game->roll(3);
+        $this->game->roll(5);
+        $this->game->roll(5); // spare
+        $this->game->roll(3);
 
-        $this->it_should_increment_max_number_of_rolls(17, 0);
+        $game = $this->it_should_increment_max_number_of_rolls(17, 0);
         $this->assertEquals(16, $game->score());
     }
 
@@ -74,13 +76,13 @@ class Test extends TestCase
      */
     public function it_should_test_for_a_single_strike(): void
     {
-        $game = new Game();
+//        $game = new Game();
 
-        $game->roll(10); // strike
-        $game->roll(3);
-        $game->roll(4);
+        $this->game->roll(10); // strike
+        $this->game->roll(3);
+        $this->game->roll(4);
 
-        $this->it_should_increment_max_number_of_rolls(16, 0);
+        $game = $this->it_should_increment_max_number_of_rolls(16, 0);
         $this->assertEquals(24, $game->score());
 
     }
