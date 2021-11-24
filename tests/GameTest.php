@@ -2,10 +2,10 @@
 
 namespace Bowling;
 
-use GameTest;
+//use GameTest;
 use PHPUnit\Framework\TestCase;
 
-class Test extends TestCase
+class GameTest extends TestCase
 {
     private $game;
 
